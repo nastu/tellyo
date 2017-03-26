@@ -1,0 +1,15 @@
+CREATE TABLE video (
+  id         BIGINT AUTO_INCREMENT PRIMARY KEY UNIQUE,
+  name       VARCHAR(255) NOT NULL,
+  created_on DATETIME     NOT NULL
+);
+CREATE TABLE dailyStatistics (
+  stats_id      BIGINT AUTO_INCREMENT PRIMARY KEY UNIQUE,
+  snapshot_time TIMESTAMP NOT NULL,
+  views         BIGINT    NOT NULL,
+  comments      BIGINT    NOT NULL,
+  relatedVideo  BIGINT    NOT NULL,
+  CONSTRAINT FK_relatedVideo FOREIGN KEY (relatedVideo)
+  REFERENCES video (id)
+    ON DELETE CASCADE
+)
